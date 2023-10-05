@@ -7,31 +7,32 @@ public class Main {
 
         Scanner in = new Scanner(System.in);
         int amount = in.nextInt();
-        int[]nums = new int[amount];
+        long[]nums = new long[amount];
 
         for (int i = 0; i < amount; i++) {
             nums[i] = in.nextInt();
         }
 
-        int gcd = findGCD(nums, amount);
+        long gcd = findGCD(nums, amount);
         System.out.println(gcd);
 
     }
 
-    public static int findGCD (int[] numArr, int am){
-        int result = gcd(numArr[0], numArr[1]);
-        for (int i = 2; i < numArr.length; i++) {
+    public static long findGCD (long[] numArr, int am){
+        long result = numArr[0];
+        for (int i = 1; i < numArr.length; i++) {
             result = gcd(result, numArr[i]);
         }
         return result;
     }
 
-    public static int gcd (int a, int b) {
-        while (a != 0 && b != 0) {
-            if (a > b) a %= b;
-            else b %= a;
+    public static long gcd (long a, long b) {
+        while (b != 0) {
+            long temp = b;
+            b = a % b;
+            a = temp;
         }
-        return a + b;
+        return a;
     }
 
 }
